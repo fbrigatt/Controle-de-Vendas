@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package formularios;
+package visao;
+
+import javax.swing.JOptionPane;
+import controle.ConectaBanco;
 
 /**
  *
@@ -11,11 +14,14 @@ package formularios;
  */
 public class Principal extends javax.swing.JFrame {
 
+    ConectaBanco conexao = new ConectaBanco();
+    
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        conexao.conectar();
     }
 
     /**
@@ -27,6 +33,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         mnuCadastros = new javax.swing.JMenu();
         item_estados = new javax.swing.JMenuItem();
@@ -44,12 +51,24 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Vendas");
 
+        jLabel1.setText("Assistir aula 34");
+
         mnuCadastros.setText("Cadastros");
 
         item_estados.setText("Estados");
+        item_estados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_estadosActionPerformed(evt);
+            }
+        });
         mnuCadastros.add(item_estados);
 
         item_cidades.setText("Cidades");
+        item_cidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                item_cidadesActionPerformed(evt);
+            }
+        });
         mnuCadastros.add(item_cidades);
 
         item_bairro.setText("Bairro");
@@ -92,20 +111,37 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(jLabel1)
+                .addContainerGap(369, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(jLabel1)
+                .addContainerGap(282, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(800, 600));
+        setSize(new java.awt.Dimension(519, 505));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuSairMouseClicked
+        conexao.desconectar();
+        //JOptionPane.showMessageDialog(null, "Desconectado com sucesso!");
         System.exit(0);
     }//GEN-LAST:event_mnuSairMouseClicked
+
+    private void item_estadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_estadosActionPerformed
+        TelaEstados estados = new TelaEstados();
+        estados.setVisible(true);
+    }//GEN-LAST:event_item_estadosActionPerformed
+
+    private void item_cidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_item_cidadesActionPerformed
+        TelaCidades cidades = new TelaCidades();
+        cidades.setVisible(true);    }//GEN-LAST:event_item_cidadesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +187,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem item_fornecedores;
     private javax.swing.JMenuItem item_produtos;
     private javax.swing.JMenuItem item_telefones;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu mnuCadastros;
     private javax.swing.JMenu mnuCompra;

@@ -5,7 +5,7 @@
  */
 package projeto_java_plugados;
 
-import formularios.Principal;
+import visao.Principal;
 
 /**
  *
